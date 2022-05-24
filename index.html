@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Alpine JS Todo App</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla&display=swap" rel="stylesheet">
+
+    <link href="images/favicon.ico" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" href="styles.css" />
+
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</head>
+
+<body class="center">
+    <h1>Alpine Todo App 🗻</h1>
+    <div x-data="{todos: JSON.parse(localStorage.getItem('todos')) || [], text: ''}"
+        x-effect="localStorage.setItem('todos', JSON.stringify(todos))">
+
+        <form @submit.prevent="todos.push(text),text = ''">
+            <input type="text" x-model="text" placeholder="What needs to be done?">
+            <button type="submit">Add Todo</button>
+        </form>
+
+        <ul>
+            <template x-for="todo in todos">
+                <li x-text="todo"></li>
+            </template>
+        </ul>
+
+
+    </div>
+</body>
+
+</html>
